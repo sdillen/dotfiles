@@ -1,0 +1,17 @@
+{
+  "Keymap": {
+    "M-v": "peco.ScrollPageUp",
+    "C-v": "peco.ScrollPageDown",
+    "C-g": "peco.Cancel",
+    "M-Space": "peco.ToggleRangeMode",
+    "M-c": "peco.CancelRangeMode"
+  },
+  "Style": {
+    "Basic": ["on_default", "default"],
+    "Matched": ["red"],
+    "Query": ["default"],
+    "SavedSelection": ["on_blue", "white"],
+    "Selected": ["on_black", "blue"]
+  }
+}
+

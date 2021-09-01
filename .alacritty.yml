@@ -1,0 +1,90 @@
+env:
+  TERM: alacritty
+
+window:
+  dimensions:
+    columns: 120
+    lines: 35
+  decorations: full
+  padding:
+    x: 10
+    y: 10
+  title: 'Terminal'
+  dynamic_title: false
+
+scrolling:
+  history: 5000
+
+background_opacity: 0.9
+
+# Colors (One Light)
+# colors:
+#   primary:
+#     foreground: '#282c34'
+#     background: '#ffffff'
+#
+#   normal:
+#     black:   '#282c34'
+#     red:     '#e06c75'
+#     green:   '#98c379'
+#     yellow:  '#d19a66'
+#     blue:    '#61afef'
+#     magenta: '#c678dd'
+#     cyan:    '#56b6c2'
+#     white:   '#abb2bf'
+#
+#   bright:
+#     black:   '#5c6370'
+#     red:     '#e06c75'
+#     green:   '#98c379'
+#     yellow:  '#d19a66'
+#     blue:    '#61afef'
+#     magenta: '#c678dd'
+#     cyan:    '#56b6c2'
+#     white:   '#ffffff'
+
+# Colors (One Dark)
+colors:
+  primary:
+    background: '0x1e2127'
+    foreground: '0xabb2bf'
+
+  normal:
+    black:   '0x1e2127'
+    red:     '0xe06c75'
+    green:   '0x98c379'
+    yellow:  '0xd19a66'
+    blue:    '0x61afef'
+    magenta: '0xc678dd'
+    cyan:    '0x56b6c2'
+    white:   '0xabb2bf'
+
+  bright:
+    black:   '0x5c6370'
+    red:     '0xe06c75'
+    green:   '0x98c379'
+    yellow:  '0xd19a66'
+    blue:    '0x61afef'
+    magenta: '0xc678dd'
+    cyan:    '0x56b6c2'
+    white:   '0xffffff'
+
+font:
+  size: 18.0
+  normal:
+    family: 'FiraCode Nerd Font'
+    style: 'Retina'
+  bold:
+    family: 'FiraCode Nerd Font'
+    style: 'Bold'
+  italic:
+    family: 'Fira Code'
+    style: 'Italic'
+  bold_italic:
+    family: 'Fira Code'
+    style: 'Bold Italic'
+  use_thin_strokes: true
+
+selection:
+  save_to_clipboard: true
+

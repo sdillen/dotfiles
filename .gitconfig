@@ -1,0 +1,49 @@
+[user]
+    name = Stefan Dillenburg
+    email = stefan.dillenburg@fit.fraunhofer.de
+	signingkey = C21FA419222B41E6
+[alias]
+    st = status
+    co = checkout
+    br = branch
+    cm = commit -v
+    ca = commit -av
+    aa = add .
+    patch = add --patch
+    lg = log --graph --oneline --decorate
+    lgs = log --graph --oneline --stat --decorate
+    mg = merge --no-ff
+    undo = reset --hard
+[core]
+    editor = nvim
+    excludesFile = ~/.gitignore
+[color]
+    status = auto
+    diff = auto
+    branch = auto
+    interactive = auto
+    grep = auto
+    ui = auto
+[init]
+    defaultBranch = main
+[commit]
+	gpgsign = true
+[pull]
+    rebase = true
+[diff]
+    tool = nvimdiff
+[difftool]
+    prompt = false
+[difftool "nvimdiff"]
+    cmd = "nvim -R -d \"$LOCAL\" \"$REMOTE\""
+[merge]
+    tool = nvimdiff
+[mergetool]
+    prompt = false
+[mergetool "nvimdiff"]
+    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\" \"$MERGED\""
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true

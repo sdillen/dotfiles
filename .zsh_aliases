@@ -1,0 +1,24 @@
+### Alias
+
+# VS Code terminal integration
+#code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
+
+# exa
+alias ls='exa'
+alias ll='exa -l -g --icons'
+alias la='exa -a --icons'
+alias l='exa --icons'
+
+alias tree='exa --tree --long'
+
+# kubectl
+source <(kubectl completion zsh)
+alias kube='kubectl'
+complete -F __start_kubectl kube
+
+# kustomize
+source <(kustomize completion zsh)
+
+# helm
+source <(helm completion zsh)
+
