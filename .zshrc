@@ -83,6 +83,7 @@ plugins=(
   osx
   tmux
   z
+  zsh-autosuggestions
   zsh-peco-history
 )
 
