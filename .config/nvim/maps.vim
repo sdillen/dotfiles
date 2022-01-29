@@ -7,6 +7,7 @@ let mapleader=";"
 nmap <C-a> gg<S-v>G
 
 " Tabs
-nmap te :tabedit
+nmap <C-n> :tabnew<CR>
+nmap te :tabedit<Space>
 nmap <S-Tab> :tabprev<Return>
 nmap <Tab> :tabnext<Return>
