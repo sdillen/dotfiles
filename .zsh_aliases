@@ -8,8 +8,14 @@ alias ls='exa'
 alias ll='exa -l -g --icons'
 alias la='exa -a --icons'
 alias l='exa --icons'
-
 alias tree='exa --tree --long'
+
+# nvim
+alias vim='nvim'
+
+# bat
+alias cat='bat --theme GitHub'
+alias diff='bat --diff --theme GitHub'
 
 # kubectl
 source <(kubectl completion zsh)
@@ -21,4 +27,7 @@ source <(kustomize completion zsh)
 
 # helm
 source <(helm completion zsh)
+
+# okteto
+source <(okteto completion zsh)
 
