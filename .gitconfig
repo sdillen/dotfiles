@@ -30,18 +30,25 @@
 	gpgsign = true
 [pull]
     rebase = true
-[diff]
-    tool = nvimdiff
-[difftool]
-    prompt = false
-[difftool "nvimdiff"]
-    cmd = "nvim -R -d \"$LOCAL\" \"$REMOTE\""
-[merge]
-    tool = nvimdiff
-[mergetool]
-    prompt = false
-[mergetool "nvimdiff"]
-    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\" \"$MERGED\""
+[pager]
+    diff = delta --theme GitHub
+    log = delta --theme GitHub
+    reflog = delta --theme GitHub
+    show = delta --theme GitHub
+[interactive]
+    diffFilter = delta --theme GitHub --color-only --features=interactive
+[delta]
+    features = decorations
+[delta "interactive"]
+    keep-plus-minus-markers = false
+[delta "decorations"]
+    commit-decoration-style = blue ol
+    commit-style = raw
+    file-style = omit
+    hunk-header-decoration-style = blue box
+    hunk-header-file-style = red
+    hunk-header-line-number-style = "#067a00"
+    hunk-header-style = file line-number syntax
 [filter "lfs"]
     clean = git-lfs clean -- %f
     smudge = git-lfs smudge -- %f
