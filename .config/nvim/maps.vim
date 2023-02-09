@@ -6,8 +6,10 @@ let mapleader=";"
 " Select all
 nmap <C-a> gg<S-v>G
 
-" Tabs
-nmap <C-n> :tabnew<CR>
-nmap te :tabedit<Space>
-nmap <S-Tab> :tabprev<Return>
-nmap <Tab> :tabnext<Return>
+" Buffers
+nmap <S-Tab> :bp<Return>
+nmap <Tab> :bn<Return>
+nmap <x> :bd<Return>
+
+" Omnifunc
+nmap <Space>x :omnifunc<CR>

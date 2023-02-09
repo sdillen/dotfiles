@@ -1,25 +1,33 @@
 ### Alias
 
-# VS Code terminal integration
-#code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
+# git
+alias git='$HOMEBREW_BIN/git'
 
 # exa
-alias ls='exa'
-alias ll='exa -l -g --icons'
-alias la='exa -a --icons'
-alias l='exa --icons'
-alias tree='exa --tree --long'
+alias l='ls --icons'
+alias ls='exa --group-directories-first'
+alias ll='ls -l -g --icons'
+alias la='ls -a --icons'
+alias lla='ls -la -g --icons'
+alias tree='ls --tree --long'
 
 # nvim
 alias vim='nvim'
 
+# tmux
+alias set-name='tmux rename-window $(basename $(pwd))'
+alias set-name-2='tmux rename-window "$(basename $(dirname $(pwd)))/$(basename $(pwd))"'
+
 # bat
-alias cat='bat --theme GitHub'
-alias diff='bat --diff --theme GitHub'
+# alias cat='bat --theme GitHub'
+# alias diff='bat --diff --theme GitHub'
+# bat dark
+alias cat='bat --theme "Visual Studio Dark+"'
+alias diff='bat --diff --theme "Visual Studio Dark+"'
 
 # kubectl
 source <(kubectl completion zsh)
-alias kube='kubectl'
+alias kube='$HOMEBREW_BIN/kubectl'
 complete -F __start_kubectl kube
 
 # kustomize
@@ -31,3 +39,5 @@ source <(helm completion zsh)
 # okteto
 source <(okteto completion zsh)
 
+# glab
+source <(glab completion --shell zsh --no-desc)

@@ -4,7 +4,6 @@ autocmd!
 scriptencoding utf-8
 if !1 | finish | endif
 
-
 " Description: Basic options
 syntax enable
 
@@ -24,11 +23,15 @@ set showmatch
 set title
 set visualbell
 
+set wrap
+set linebreak
+
 autocmd BufWritePre * :%s/\s\+$//e
 
 " Description: Neovim specific
 if has('nvim')
     set inccommand=split
+    set signcolumn=yes
 end
 
 " Description: Backup settings
@@ -61,12 +64,10 @@ set smarttab
 set softtabstop=4
 set tabstop=4
 
-" Description: Golang specific
-" GoLang + vim-go = WOW
-au FileType go set noexpandtab
-au FileType go set shiftwidth=4
-au FileType go set softtabstop=4
-au FileType go set tabstop=4
+" Description: Spell checking
+set spelllang=en,de
+set spellsuggest=best,9
+set spell
 
 " Description: Highlights
 highlight LineNr cterm=none ctermfg=240 guifg=#2b506e guibg=#000000
@@ -104,7 +105,7 @@ if exists("&termguicolors") && exists("&winblend")
         \ 'error': '#ff0000'
     \ }
 
-    colorscheme github_light
+    colorscheme kanagawa
 
     " Use NeoSolarized
     " set background=dark
@@ -118,21 +119,11 @@ if exists("&termguicolors") && exists("&winblend")
     " let g:everforest_enable_italic=1
     " let g:everforest_disable_italic_comment=1
     " colorscheme everforest
+
+    " Description: Transparent background
+    hi Normal guibg=NONE ctermbg=NONE
+    highlight! link SignColumn LineNr
 endif
 
-" Description: Startify settings
-let g:startify_list_order = ['sessions', 'files']
-let g:startify_custom_header = [
-    \'   |            _ _ _ _               |',
-    \'   |           | (_) | |              |',
-    \'   |    ___  __| |_| | | ___ _ __     |',
-    \'   |   / __|/ _` | | | |/ _ \ ''_ \    |',
-    \'   |   \__ \ (_| | | | |  __/ | | |   |',
-    \'   |   |___/\__,_|_|_|_|\___|_| |_|   |',
-    \'   |                                  |',
-    \'   |   ============================   |',
-    \'',
-\]
-
-" Description: Plugin settings
-let g:indentLine_char = '▏'
+" Description: Import language specific settings
+runtime ./language-specifics.vim

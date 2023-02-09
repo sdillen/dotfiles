@@ -2,7 +2,7 @@ env:
   TERM: alacritty
 
 import:
-- ~/.config/alacritty/colors/github_light.yaml
+  - ~/.config/alacritty/colors/kanagawa.yaml
 
 window:
   dimensions:
@@ -15,29 +15,29 @@ window:
   title: 'Terminal'
   dynamic_title: false
   opacity: 1
+  startup_mode: 'Fullscreen'
 
 scrolling:
   history: 5000
 
 font:
   # Normal Mode
-  size: 18.0
+  size: 20.0
   # Presentation Mode
-  # size: 32.0
+  # size: 26.0
   normal:
-    family: 'FiraCode Nerd Font'
-    style: 'Retina'
+    family: 'GoMono Nerd Font Mono'
+    style: 'Book'
   bold:
-    family: 'FiraCode Nerd Font'
+    family: 'GoMono Nerd Font Mono'
     style: 'Bold'
   italic:
-    family: 'Fira Code'
+    family: 'GoMono Nerd Font Mono'
     style: 'Italic'
   bold_italic:
-    family: 'Fira Code'
+    family: 'GoMono Nerd Font Mono'
     style: 'Bold Italic'
   use_thin_strokes: true
 
 selection:
   save_to_clipboard: true
-

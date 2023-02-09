@@ -1,3 +1,6 @@
+# default editor
+export EDITOR="nvim"
+
 # gpg tty reference for signing commits
 export GPG_TTY="$(tty)"
 
@@ -22,20 +25,15 @@ export GOBIN="$GOPATH/bin"
 export GIT_GET_PATH="$WORKSPACE/codebase"
 export GIT_GET_HOST="github.com"
 
-# Add vscode into path
-export VSCODE_PATH="$HOME/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
-
 # Build path
 export PATH="$PATH:$HOMEBREW_BIN:$GOBIN:$HOME/.krew/bin:$HOME/.bin:$HOME/.local/bin:/Users/dillenbu/Library/Python/3.8/bin"
 
 # LLVM path
 export PATH="/Users/dillenbu/Workspace/homebrew/opt/llvm/bin:$PATH"
 
-# Powershell Language Server
-export PSES_BUNDLE_PATH="$WORKSPACE/powershell"
-export PSES_TMP_PATH="/tmp/powershell_es"
-
 # Java Language Server
 export PATH="$HOMEBREW/opt/openjdk@11/bin:$PATH"
 export CPPFLAGS="-I/Users/dillenbu/Workspace/homebrew/opt/openjdk@11/include"
 
+# Add Visual Studio Code (code)
+export PATH="$PATH:/Users/dillenbu/Applications/Visual Studio Code.app/Contents/Resources/app/bin"

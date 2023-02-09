@@ -1,7 +1,13 @@
+[includeIf "gitdir:**/gitlab.fit.fraunhofer.de/**"]
+    path = .gitconfig-user-work
+[includeIf "gitdir:**/gitlab.cc-asp.fraunhofer.de/**"]
+    path = .gitconfig-user-work
+[includeIf "gitdir:**/github.com/**"]
+    path = .gitconfig-user-private
+[includeIf "gitdir:**/gitlab.com/**"]
+    path = .gitconfig-user-private
 [user]
     name = Stefan Dillenburg
-    email = stefan.dillenburg@fit.fraunhofer.de
-	signingkey = C21FA419222B41E6
 [alias]
     st = status
     co = checkout
@@ -10,8 +16,8 @@
     ca = commit -av
     aa = add .
     patch = add --patch
-    lg = log --graph --oneline --decorate
-    lgs = log --graph --oneline --stat --decorate
+    lg = log --graph --decorate
+    lgs = log --graph --stat --decorate
     mg = merge --no-ff
     undo = reset --hard
 [core]
@@ -31,12 +37,12 @@
 [pull]
     rebase = true
 [pager]
-    diff = delta --theme GitHub
-    log = delta --theme GitHub
-    reflog = delta --theme GitHub
-    show = delta --theme GitHub
+    diff = delta --syntax-theme 'Visual Studio Dark+'
+    log = delta --syntax-theme 'Visual Studio Dark+'
+    reflog = delta --syntax-theme 'Visual Studio Dark+'
+    show = delta --syntax-theme 'Visual Studio Dark+'
 [interactive]
-    diffFilter = delta --theme GitHub --color-only --features=interactive
+    diffFilter = delta --syntax-theme 'Visual Studio Dark+' --color-only --features=interactive
 [delta]
     features = decorations
 [delta "interactive"]
@@ -54,3 +60,5 @@
     smudge = git-lfs smudge -- %f
     process = git-lfs filter-process
     required = true
+[remind]
+    paths = /Users/dillenbu/Workspace/codebase/gitlab.cc-asp.fraunhofer.de/**

@@ -85,6 +85,7 @@ plugins=(
   z
   zsh-autosuggestions
   zsh-peco-history
+  zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh

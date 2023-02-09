@@ -5,6 +5,8 @@ endif
 lua << EOF
 local nvim_lsp = require('lspconfig')
 local protocol = require('vim.lsp.protocol')
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -32,26 +34,56 @@ local on_attach = function(client, bufnr)
     buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
     buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
     buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-    buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-    buf_set_keymap('n', '<C-j>', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+    buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+    buf_set_keymap('n', '<C-j>', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
     buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-    buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+    buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
-    -- Formatting.
-    if client.resolved_capabilities.document_formatting then
-        vim.api.nvim_command [[augroup Format]]
-        vim.api.nvim_command [[autocmd! * <buffer>]]
-        vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()]]
-        vim.api.nvim_command [[augroup END]]
+    -- formatting
+    if client.server_capabilities.documentFormattingProvider then
+        vim.api.nvim_create_autocmd("BufWritePre", {
+            group = vim.api.nvim_create_augroup("Format", { clear = true }),
+            buffer = bufnr,
+            callback = function() vim.lsp.buf.formatting_seq_sync() end
+        })
     end
 
-    -- require'completion'.on_attach(client, bufnr)
+    -- Formatting.
+    -- if client.resolved_capabilities.document_formatting then
+    --     vim.api.nvim_command [[augroup Format]]
+    --     vim.api.nvim_command [[autocmd! * <buffer>]]
+    --     vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()]]
+    --     vim.api.nvim_command [[augroup END]]
+    -- end
 
+    -- require'completion'.on_attach(client, bufnr)
 end
+
+nvim_lsp.ansiblels.setup {
+    on_attach = on_attach,
+    filetypes = { 'yaml.ansible' },
+    settings = {
+        ansible = {
+            ansible = {
+              path = "ansible"
+            },
+            ansibleLint = {
+              enabled = true,
+              path = "ansible-lint"
+            },
+            executionEnvironment = {
+              enabled = false
+            },
+            python = {
+              interpreterPath = "python3"
+            }
+        }
+    }
+}
 
 nvim_lsp.diagnosticls.setup {
   on_attach = on_attach,
-  filetypes = { 'javascript', 'vue', 'json', 'css', 'less', 'scss', 'markdown' },
+  filetypes = { 'vue','javascript', 'json', 'css', 'less', 'scss'},
   init_options = {
     linters = {
       eslint = {
@@ -77,7 +109,6 @@ nvim_lsp.diagnosticls.setup {
     },
     filetypes = {
       javascript = 'eslint',
-      vue = 'eslint',
     },
     formatters = {
       eslint = {
@@ -93,13 +124,15 @@ nvim_lsp.diagnosticls.setup {
     formatFiletypes = {
       css = 'prettier',
       javascript = 'eslint',
-      vue = 'eslint',
+      vue = 'prettier',
       json = 'prettier',
       scss = 'prettier',
       less = 'prettier',
       markdown = 'prettier',
+      pug = 'prettier',
     }
-  }
+  },
+  capabilities = capabilites,
 }
 
 nvim_lsp.html.setup {
@@ -111,15 +144,16 @@ nvim_lsp.html.setup {
             javascript = true,
             vue = true
         }
-    }
+    },
+    capabilities = capabilites,
 }
 
-nvim_lsp.jdtls.setup{
+nvim_lsp.jdtls.setup {
     on_attach = on_attach,
     cmd = {'jdtls'},
 }
 
-nvim_lsp.gopls.setup{
+nvim_lsp.gopls.setup {
     on_attach = on_attach,
     cmd = {"gopls", "serve"},
     settings = {
@@ -130,17 +164,49 @@ nvim_lsp.gopls.setup{
         staticcheck = true,
       },
     },
+    capabilities = capabilites,
+}
+
+nvim_lsp.powershell_es.setup {
+  bundle_path = '/Users/dillenbu/Workspace/powershell/PowerShellEditorServices',
+  shell = '/Users/dillenbu/Workspace/powershell/7.2.2/pwsh',
+}
+
+nvim_lsp.vuels.setup {
+    on_attach = on_attach,
+    filetypes = {"vue"},
+    cmd = { "vls" },
+    vetur = {
+        useWorkspaceDependencies = false,
+        validation = {
+            template = true,
+            script = true,
+            style = true,
+        },
+        format = {
+            enable = true,
+            defaultFormatter = {
+                js = 'prettier',
+                ts = 'prettier',
+                css = 'prettier',
+                pug = 'prettier',
+            },
+            scriptInitialIndent = true,
+            styleInitialIndent = true,
+        }
+    }
 }
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { "clangd", "dockerls", "jsonls", "pylsp", "vuels", "yamlls" }
+local servers = { "clangd", "cssls", "dockerls", "jsonls", "marksman", "pylsp", "tailwindcss", "yamlls" }
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
         on_attach = on_attach,
         flags = {
             debounce_text_changes = 150,
-        }
+        },
+        capabilities = capabilites,
     }
 end
 EOF
